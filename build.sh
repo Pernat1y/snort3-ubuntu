@@ -9,11 +9,12 @@
 apt-get install -y build-essential autotools-dev libdumbnet-dev libluajit-5.1-dev \
   libpcap-dev zlib1g-dev pkg-config libhwloc-dev cmake liblzma-dev openssl libssl-dev \
   cpputest libsqlite3-dev libtool uuid-dev git autoconf bison flex libcmocka-dev \
-  libnetfilter-queue-dev libunwind-dev libmnl-dev ethtool cmake
+  libnetfilter-queue-dev libunwind-dev libmnl-dev ethtool
 
 
 rm -rf ~/snort_src 2>/dev/null
 mkdir ~/snort_src
+
 
 set -e
 set -x
