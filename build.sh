@@ -9,7 +9,7 @@
 apt-get install -y build-essential autotools-dev libdumbnet-dev libluajit-5.1-dev \
   libpcap-dev zlib1g-dev pkg-config libhwloc-dev cmake liblzma-dev openssl libssl-dev \
   cpputest libsqlite3-dev libtool uuid-dev git autoconf bison flex libcmocka-dev \
-  libnetfilter-queue-dev libunwind-dev libmnl-dev ethtool
+  libnetfilter-queue-dev libunwind-dev libmnl-dev ethtool lsb-release
 
 
 rm -rf ~/snort_src 2>/dev/null
@@ -163,6 +163,10 @@ tar -cvf snort3-3.1.17.0.tar \
          /usr/lib/x86_64-linux-gnu/libhwloc.so.15.1.0 \
          /usr/lib/x86_64-linux-gnu/libpcre.so.3 \
          /usr/lib/x86_64-linux-gnu/libpcre.so.3.13.3 \
+         /usr/lib/x86_64-linux-gnu/libhwloc.so.5 \
+         /usr/lib/x86_64-linux-gnu/libhwloc.so.5.7.6 \
+         /usr/local/lib/libsafec.so.3 \
+         /usr/local/lib/libsafec.so.3.0.7 \
          /usr/local/lib/libpcre.so \
          /usr/local/lib/libpcre.so.1 \
          /usr/local/lib/libpcre.so.1.2.13 \
@@ -170,8 +174,9 @@ tar -cvf snort3-3.1.17.0.tar \
          /usr/local/lib/libsafec.so.3 \
          /usr/local/lib/libtcmalloc.so.4 \
          /usr/local/lib/libtcmalloc.so \
-         /usr/local/lib/libtcmalloc.so.4.5.10 && \
+         /usr/local/lib/libtcmalloc.so.4.5.10 
 gzip snort3-3.1.17.0.tar
+mv "snort3-3.1.17.0.tar.gz" "snort3-3.1.17.0-ubuntu-$(lsb_release -r | awk '{print $NF}' | sed 's/\./-/g').tar.gz"
 
 
 # Check installation
