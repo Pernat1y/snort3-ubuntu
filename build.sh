@@ -1,7 +1,7 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 # More up-to-date version of https://www.snort.org/documents/snort-3-1-17-0-on-ubuntu-18-20
-# Tested on Ubuntu 20.04 LTS
+# Tested on Ubuntu 18.04 LTS and 20.04 LTS
 # Build on 22.04 LTS fails - see https://github.com/intel/hyperscan/issues/344 
 
 
@@ -154,7 +154,23 @@ tar -cvf snort3-3.1.17.0.tar \
          /usr/local/etc/snort \
          /usr/local/lib/snort \
          /usr/local/share/doc/snort \
-         /lib/systemd/system/snort3.service && \
+         /lib/systemd/system/snort3.service \
+	 /usr/lib/x86_64-linux-gnu/libdumbnet.so.1 \
+         /usr/lib/x86_64-linux-gnu/libdumbnet.so \
+         /usr/lib/x86_64-linux-gnu/libdumbnet.so.1.0.1 \
+         /usr/lib/x86_64-linux-gnu/libhwloc.so \
+         /usr/lib/x86_64-linux-gnu/libhwloc.so.15 \
+         /usr/lib/x86_64-linux-gnu/libhwloc.so.15.1.0 \
+         /usr/lib/x86_64-linux-gnu/libpcre.so.3 \
+         /usr/lib/x86_64-linux-gnu/libpcre.so.3.13.3 \
+         /usr/local/lib/libpcre.so \
+         /usr/local/lib/libpcre.so.1 \
+         /usr/local/lib/libpcre.so.1.2.13 \
+         /usr/local/lib/libsafec.so \
+         /usr/local/lib/libsafec.so.3 \
+         /usr/local/lib/libtcmalloc.so.4 \
+         /usr/local/lib/libtcmalloc.so \
+         /usr/local/lib/libtcmalloc.so.4.5.10 && \
 gzip snort3-3.1.17.0.tar
 
 
