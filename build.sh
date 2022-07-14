@@ -118,7 +118,7 @@ make install
 
 # Build Snort extra
 cd ~/snort_src && \
-wget -c "https://github.com/snort3/snort3_extra/archive/refs/tags/$snort_version.tar.gz -O snort3_extra-$snort_version.tar.gz" && \
+wget -c "https://github.com/snort3/snort3_extra/archive/refs/tags/$snort_version.tar.gz" -O "snort3_extra-$snort_version.tar.gz" && \
 tar -xzvf "snort3_extra-$snort_version.tar.gz" && \
 cd "snort3_extra-$snort_version" && \
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/ && \
