@@ -4,9 +4,15 @@
 # Tested on Ubuntu 18.04 LTS and 20.04 LTS
 # Build on 22.04 LTS fails - see https://github.com/intel/hyperscan/issues/344 
 
+set -e
+set -x
+
+snort_version="3.1.32"
+
 
 # Install dependencies
-apt-get install -y build-essential autotools-dev libdumbnet-dev libluajit-5.1-dev \
+apt update
+apt install -y build-essential autotools-dev libdumbnet-dev libluajit-5.1-dev \
   libpcap-dev zlib1g-dev pkg-config libhwloc-dev cmake liblzma-dev openssl libssl-dev \
   cpputest libsqlite3-dev libtool uuid-dev git autoconf bison flex libcmocka-dev \
   libnetfilter-queue-dev libunwind-dev libmnl-dev ethtool lsb-release
@@ -14,10 +20,6 @@ apt-get install -y build-essential autotools-dev libdumbnet-dev libluajit-5.1-de
 
 rm -rf ~/snort_src 2>/dev/null
 mkdir ~/snort_src
-
-
-set -e
-set -x
 
 
 # Build dependencies - libsafec
@@ -105,9 +107,9 @@ ldconfig
 
 # Build Snort
 cd ~/snort_src && \
-wget https://github.com/snort3/snort3/archive/refs/tags/3.1.32.0.tar.gz -O snort3-3.1.32.0.tar.gz && \
-tar -xzvf snort3-3.1.32.0.tar.gz && \
-cd snort3-3.1.32.0 && \
+wget "https://github.com/snort3/snort3/archive/refs/tags/$snort_version.tar.gz" -O "snort3-$snort_version.tar.gz" && \
+tar -xzvf "snort3-$snort_version.tar.gz" && \
+cd "snort3-$snort_version" && \
 ./configure_cmake.sh --prefix=/usr/local --enable-tcmalloc && \
 cd build && \
 make && \
@@ -116,9 +118,9 @@ make install
 
 # Build Snort extra
 cd ~/snort_src && \
-wget https://github.com/snort3/snort3_extra/archive/refs/tags/3.1.32.0.tar.gz -O snort3_extra-3.1.32.0.tar.gz && \
-tar -xzvf snort3_extra-3.1.32.0.tar.gz && \
-cd snort3_extra-3.1.32.0 && \
+wget "https://github.com/snort3/snort3_extra/archive/refs/tags/$snort_version.tar.gz -O snort3_extra-$snort_version.tar.gz" && \
+tar -xzvf "snort3_extra-$snort_version.tar.gz" && \
+cd "snort3_extra-$snort_version" && \
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/ && \
 ./configure_cmake.sh --prefix=/usr/local && \
 cd build && \
@@ -144,8 +146,9 @@ systemctl daemon-reload
 
 
 # Package files to move to a different system
+set +e
 cd / && \
-tar -cvf snort3-3.1.17.0.tar \
+tar -cvf snort3-$snort_version.tar \
          /usr/local/bin/snort \
          /usr/local/bin/appid_detector_builder.sh \
          /usr/local/bin/u2boat \
@@ -165,6 +168,8 @@ tar -cvf snort3-3.1.17.0.tar \
          /usr/lib/x86_64-linux-gnu/libpcre.so.3.13.3 \
          /usr/lib/x86_64-linux-gnu/libhwloc.so.5 \
          /usr/lib/x86_64-linux-gnu/libhwloc.so.5.7.6 \
+         /usr/lib/x86_64-linux-gnu/libltdl.so.7 \
+         /usr/lib/x86_64-linux-gnu/libltdl.so.7.3.1 \
          /usr/local/lib/libsafec.so.3 \
          /usr/local/lib/libsafec.so.3.0.7 \
          /usr/local/lib/libpcre.so \
@@ -175,8 +180,8 @@ tar -cvf snort3-3.1.17.0.tar \
          /usr/local/lib/libtcmalloc.so.4 \
          /usr/local/lib/libtcmalloc.so \
          /usr/local/lib/libtcmalloc.so.4.5.10 
-gzip snort3-3.1.17.0.tar
-mv "snort3-3.1.17.0.tar.gz" "snort3-3.1.17.0-ubuntu-$(lsb_release -r | awk '{print $NF}' | sed 's/\./-/g').tar.gz"
+gzip "snort3-$snort_version.tar"
+mv "snort3-$snort_version.tar.gz" "snort3-$snort_version_ubuntu-$(lsb_release -r | awk '{print $NF}' | sed 's/\./-/g').tar.gz"
 
 
 # Check installation
