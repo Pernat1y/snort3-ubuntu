@@ -181,7 +181,7 @@ tar -cvf snort3-$snort_version.tar \
          /usr/local/lib/libtcmalloc.so \
          /usr/local/lib/libtcmalloc.so.4.5.10 
 gzip "snort3-$snort_version.tar"
-mv "snort3-$snort_version.tar.gz" "snort3-$snort_version_ubuntu-$(lsb_release -r | awk '{print $NF}' | sed 's/\./-/g').tar.gz"
+mv "snort3-$snort_version.tar.gz" "snort3-$snort_version-ubuntu-$(lsb_release -r | awk '{print $NF}' | sed 's/\./-/g').tar.gz"
 
 
 # Check installation
