@@ -34,7 +34,7 @@ make install
 
 # Build dependencies - pcre
 cd ~/snort_src/ && \
-wget https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz && \
+wget -c https://sourceforge.net/projects/pcre/files/pcre/8.45/pcre-8.45.tar.gz && \
 tar -xzvf pcre-8.45.tar.gz && \
 cd pcre-8.45 && \
 ./configure && \
@@ -44,7 +44,7 @@ make install
 
 # Build dependencies - gperftools
 cd ~/snort_src && \
-wget https://github.com/gperftools/gperftools/releases/download/gperftools-2.10/gperftools-2.10.tar.gz && \
+wget -c https://github.com/gperftools/gperftools/releases/download/gperftools-2.10/gperftools-2.10.tar.gz && \
 tar xzvf gperftools-2.10.tar.gz && \
 cd gperftools-2.10 && \
 ./configure && \
@@ -54,7 +54,7 @@ make install
 
 # Build dependencies - ragel
 cd ~/snort_src && \
-wget http://www.colm.net/files/ragel/ragel-6.10.tar.gz && \
+wget -c http://www.colm.net/files/ragel/ragel-6.10.tar.gz && \
 tar -xzvf ragel-6.10.tar.gz && \
 cd ragel-6.10 && \
 ./configure && \
@@ -64,13 +64,13 @@ make install
 
 # Build dependencies - boost
 cd ~/snort_src && \
-wget https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz && \
+wget -c https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.gz && \
 tar -xvzf boost_1_79_0.tar.gz
 
 
 # Build dependencies - hyperscan
 cd ~/snort_src && \
-wget https://github.com/intel/hyperscan/archive/refs/tags/v5.4.0.tar.gz && \
+wget -c https://github.com/intel/hyperscan/archive/refs/tags/v5.4.0.tar.gz && \
 tar -xvzf v5.4.0.tar.gz && \
 mkdir ~/snort_src/hyperscan-5.4.0-build && \
 cd hyperscan-5.4.0-build/ && \
@@ -81,7 +81,7 @@ make install
 
 # Build dependencies - flatbuffers
 cd ~/snort_src && \
-wget https://github.com/google/flatbuffers/archive/refs/tags/v2.0.0.tar.gz -O flatbuffers-v2.0.0.tar.gz && \
+wget -c https://github.com/google/flatbuffers/archive/refs/tags/v2.0.0.tar.gz -O flatbuffers-v2.0.0.tar.gz && \
 tar -xzvf flatbuffers-v2.0.0.tar.gz && \
 mkdir flatbuffers-build && \
 cd flatbuffers-build && \
@@ -92,7 +92,7 @@ make install
 
 # Build dependencies - libdaq
 cd ~/snort_src && \
-wget https://github.com/snort3/libdaq/archive/refs/tags/v3.0.8.tar.gz -O libdaq-3.0.8.tar.gz && \
+wget -c https://github.com/snort3/libdaq/archive/refs/tags/v3.0.8.tar.gz -O libdaq-3.0.8.tar.gz && \
 tar -xzvf libdaq-3.0.8.tar.gz && \
 cd libdaq-3.0.8 && \
 ./bootstrap && \
@@ -107,7 +107,7 @@ ldconfig
 
 # Build Snort
 cd ~/snort_src && \
-wget "https://github.com/snort3/snort3/archive/refs/tags/$snort_version.tar.gz" -O "snort3-$snort_version.tar.gz" && \
+wget -c "https://github.com/snort3/snort3/archive/refs/tags/$snort_version.tar.gz" -O "snort3-$snort_version.tar.gz" && \
 tar -xzvf "snort3-$snort_version.tar.gz" && \
 cd "snort3-$snort_version" && \
 ./configure_cmake.sh --prefix=/usr/local --enable-tcmalloc && \
@@ -118,7 +118,7 @@ make install
 
 # Build Snort extra
 cd ~/snort_src && \
-wget "https://github.com/snort3/snort3_extra/archive/refs/tags/$snort_version.tar.gz -O snort3_extra-$snort_version.tar.gz" && \
+wget -c "https://github.com/snort3/snort3_extra/archive/refs/tags/$snort_version.tar.gz -O snort3_extra-$snort_version.tar.gz" && \
 tar -xzvf "snort3_extra-$snort_version.tar.gz" && \
 cd "snort3_extra-$snort_version" && \
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/ && \
