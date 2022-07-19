@@ -7,7 +7,8 @@
 set -e
 set -x
 
-snort_version="3.1.32"
+# 3.x.xx.x
+snort_version="3.1.36.0"
 
 
 # Install dependencies
